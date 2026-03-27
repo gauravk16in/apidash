@@ -76,13 +76,14 @@ MCP servers are getting more popular and even becoming the API layer of AI agent
 
 3. Detailed Description
 
-1.*Restore previous session on disconnection*.
+1.**Restore previous session on disconnection**
 localStorage keeps data only in useState which get clears on every refresh, and developer need to repeat the tool calling by giving the arguments required and this leads to frustration.
 While using IndexedDB can fix this problem by acting as a persistent, client-side database that can survive browser refresh.
 also IndexedDB is async, it supports structured queries, and doesn't block rendering like localStorage and avoids unexpected freezes.
+
 ![restore-session](doc/proposals/2026/gsoc/images/restore-mcpdash.png)
 
-2.*Extended Traffic Controller*
+2.**Extended Traffic Controller**
 -Traffic Panel (Logs) helps in determining the exact timestamps, latency of a tool call.
 -The purpose is to capture the logs with progress token (When a `tools/call` has a `progressToken`, show a live progress bar
 in the Tools panel that updates as notifications arrive) and handle way better than existing history or traffic handler by parsing the MCP communication between client and server. It can be able to fetch the history of requests and responses between client and server in better and structured form. It helps developer understand better what exactly went wrong, which field failed and why.
@@ -90,19 +91,22 @@ in the Tools panel that updates as notifications arrive) and handle way better t
 and avoids prewrites overhead on every insert.
 -Adding a replay↵ button can helps in repeating the previous actions performed.
 One can replay any `tools/call` by clicking on the replay↵ button from the log history.
+
 ![traffic](images/traffic-mcpdash.png)
 
-3.*Scenario Workflow*
+3.**Scenario Workflow**
 Design a scenario workflow to streamline the execution and validation of testing scenarios. It enables developers to trigger specific test suites using tool name selectors, or any other to monitor real-time execution results, and systematically diagnose failures. It can work by integrating validation checks and environment variable verification. 
+
 ![scenario](images/scenario-mcpdash.png)
 
-4.*Identify and Categorizes Every Error*
+4.**Identify and Categorizes Every Error**
 Add a simple classification layer that categorizes each error to exactly one of three layer based on the JSON RPC error code & method context.
 The classification can be displayed with a colored tag next to each error entry in the traffic panel.
 eg. `[TRANSPORT]`, `[PROTOCOL]`, `[TOOL-EXEC]`
+
 ![errors](images/errors-mcpdash.png)
 
-5.*Preflight validation*
+5.**Preflight validation**
 Submitting a tool call with a missing required field. It can be a string value below `minLength`, or a number above `MAX`
 gives an inline error under each field before any network requests is made.
 The validator runs against the tool's `inputSchema` before `makeRequest` is called.
@@ -162,8 +166,11 @@ Week 12
 
 Complete documentation, demo video, and final UI adjustments. Prepare the final pull requests, usage guide, and handoff notes for maintainers.
 
-UI Mockups Prototype
+**Initial UI Mockup**
+
 ![Connection](images/connection-mcpdash.png)
-![explore](images/explore-mcpdash.png)
-![console](images/console-mcpdash.png)
----
+
+![Explore](images/explore-mcpdash.png)
+
+![Console](images/console-mcpdash.png)
+
